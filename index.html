@@ -119,20 +119,20 @@
             text-align: center;
         }
 
-        /* Bilder / prosjekter */
-        .responsive-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
+        /* Prosjektbilder – én kolonne, store bilder */
+        .project-images-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
             margin-top: 1.5rem;
+            align-items: center;
         }
 
-        .responsive-images img,
-        .project-image {
+        .project-image-large {
             width: 100%;
-            max-width: 800px;
+            max-width: 1000px;   /* større på PC */
             height: auto;
-            border-radius: 10px;
+            border-radius: 12px;
             object-fit: cover;
             display: block;
             border: 1px solid #e5e7eb;
@@ -265,11 +265,13 @@
             <h2>Prosjekter og bilder</h2>
             <h3>Under er noen bilder av arbeid vi har utført den siste tiden.</h3>
 
-            <div class="responsive-images">
+            <div class="project-images-column">
                 <img src="Bilde1.jpg" 
-                     alt="Eksempel på arbeid utført av Bygg og Hjem AS">
+                     alt="Eksempel på arbeid utført av Bygg og Hjem AS"
+                     class="project-image-large">
                 <img src="Bilde2.jpg" 
-                     alt="Collage av utført arbeid av Bygg og Hjem AS">
+                     alt="Collage av utført arbeid av Bygg og Hjem AS"
+                     class="project-image-large">
             </div>
         </section>
 
@@ -370,28 +372,39 @@
     </footer>
 
     <script>
-        // Smooth scroll og grønn highlight-effekt
+        // Smooth scroll, grønn highlight + korrigering for sticky meny
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section');
 
+        function scrollToSection(targetSection) {
+            const headerOffset = 100; // juster hvis du vil ha mer/mindre luft
+            const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+
         navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 navLinks.forEach(l => l.classList.remove('active'));
                 this.classList.add('active');
-                
+
                 const targetId = this.getAttribute('href').substring(1);
                 const targetSection = document.getElementById(targetId);
-                
+
                 sections.forEach(s => s.classList.remove('highlight'));
-                
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-                
+
+                scrollToSection(targetSection);
+
                 setTimeout(() => {
                     targetSection.classList.add('highlight');
                 }, 400);
-                
+
                 // lengre grønn effekt (ca. 5,4 sekunder totalt)
                 setTimeout(() => {
                     targetSection.classList.remove('highlight');
