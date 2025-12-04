@@ -209,12 +209,21 @@
         @media (max-width: 640px) {
             .top-nav-inner {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                gap: 0.5rem;
             }
 
             .top-nav nav {
                 width: 100%;
+                display: flex;
                 justify-content: space-around;
+                flex-wrap: wrap;
+                row-gap: 0.35rem;
+            }
+
+            .top-nav nav a {
+                flex: 1 1 auto;
+                text-align: center;
             }
 
             section {
@@ -261,7 +270,7 @@
                  alt="Eksempel på arbeid utført av Bygg og Hjem AS" 
                  class="project-image">
             
-            <!-- Legg til flere bilder her hvis du har:
+            <!-- Flere bilder om du vil:
             <div class="responsive-images">
                 <img src="Bilde2.jpg" alt="Prosjekt 2">
                 <img src="Bilde3.jpg" alt="Prosjekt 3">
@@ -374,28 +383,20 @@
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Fjern active fra alle
                 navLinks.forEach(l => l.classList.remove('active'));
-                
-                // Legg til active på klikket lenke
                 this.classList.add('active');
                 
-                // Finn seksjonen
                 const targetId = this.getAttribute('href').substring(1);
                 const targetSection = document.getElementById(targetId);
                 
-                // Fjern highlight fra alle seksjoner
                 sections.forEach(s => s.classList.remove('highlight'));
                 
-                // Scroll til seksjonen
                 targetSection.scrollIntoView({ behavior: 'smooth' });
                 
-                // Legg til grønn highlight-effekt
                 setTimeout(() => {
                     targetSection.classList.add('highlight');
                 }, 400);
                 
-                // Fjern highlight etter 2.5 sekunder
                 setTimeout(() => {
                     targetSection.classList.remove('highlight');
                 }, 2900);
