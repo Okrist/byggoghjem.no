@@ -130,7 +130,7 @@
 
         .project-image-large {
             width: 100%;
-            max-width: 1000px;   /* større på PC */
+            max-width: 1000px;
             height: auto;
             border-radius: 12px;
             object-fit: cover;
@@ -377,7 +377,7 @@
         const sections = document.querySelectorAll('section');
 
         function scrollToSection(targetSection) {
-            const headerOffset = 100; // juster hvis du vil ha mer/mindre luft
+            const headerOffset = 140; // større offset pga. meny + mobilnettleser
             const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
             const offsetPosition = elementPosition - headerOffset;
 
