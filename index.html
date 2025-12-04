@@ -5,101 +5,402 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bygg og Hjem AS</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: #f3f4f6;
+            color: #111827;
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
         }
-        .container {
-            width: 80%;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        /* Toppmeny */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #1f2937;
+            border-bottom: 3px solid #77aaff;
+            padding: 0.75rem 1.5rem;
         }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 20px;
-            border-bottom: #77aaff 3px solid;
-            text-align: center;
+
+        .top-nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
-        header h1 {
-            margin: 0;
+
+        .top-nav .logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #ffffff;
+            letter-spacing: 0.02em;
         }
-        .main-content {
-            padding: 20px 0;
-            text-align: center;
+
+        .top-nav nav {
+            display: flex;
+            gap: 1.5rem;
         }
-        .main-content h2 {
+
+        .top-nav nav a {
+            text-decoration: none;
+            color: #d1d5db;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .top-nav nav a:hover {
+            color: #ffffff;
+            background: rgba(119, 170, 255, 0.2);
+        }
+
+        .top-nav nav a.active {
+            color: #ffffff;
+            background: #77aaff;
+        }
+
+        /* Hovedinnhold */
+        .page {
+            max-width: 1100px;
+            margin: 2rem auto 3rem;
+            padding: 0 1rem;
+        }
+
+        /* Seksjoner */
+        section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            transition: all 0.5s ease;
+            scroll-margin-top: 80px;
+        }
+
+        section.highlight {
+            background: rgba(34, 197, 94, 0.12);
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.4), 0 10px 30px rgba(34, 197, 94, 0.2);
+            transform: scale(1.02);
+        }
+
+        section h2 {
             margin-top: 0;
-            color: #333;
+            color: #1f2937;
+            font-size: 1.75rem;
+            text-align: center;
         }
-        .main-content p {
+
+        section h3 {
+            color: #374151;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        section p {
             max-width: 750px;
-            margin: 10px auto;
+            margin: 1rem auto;
         }
+
+        /* Hero / intro */
+        .hero {
+            text-align: center;
+        }
+
+        /* Bilder */
+        .responsive-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .responsive-images img,
         .project-image {
-            max-width: 100%;
+            width: 100%;
+            max-width: 800px;
             height: auto;
-            margin: 20px auto;
+            border-radius: 10px;
+            object-fit: cover;
             display: block;
-            border: 1px solid #ccc;
+            border: 1px solid #e5e7eb;
+            margin: 20px auto;
         }
+
+        /* Kundeuttalelser */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .testimonial {
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            background: #f9fafb;
+        }
+
+        .testimonial .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem 0.75rem;
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial h3 {
+            margin: 0.3rem 0 0.7rem;
+            font-size: 1.05rem;
+            color: #1f2937;
+            text-align: left;
+        }
+
+        .testimonial p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 0.95rem;
+        }
+
+        /* Kontakt */
+        .contact-info {
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .contact-info a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            background: #333;
-            color: #fff;
-            margin-top: 20px;
+            padding: 1.5rem;
+            background: #1f2937;
+            color: #d1d5db;
+            margin-top: 3rem;
+        }
+
+        /* Mobil */
+        @media (max-width: 640px) {
+            .top-nav-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .top-nav nav {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            section {
+                padding: 1.75rem 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Bygg og Hjem AS</h1>
+    <!-- Toppmeny -->
+    <header class="top-nav">
+        <div class="top-nav-inner">
+            <div class="logo">Bygg og Hjem AS</div>
+            <nav>
+                <a href="#hjem" class="nav-link">Hjem</a>
+                <a href="#tjenester" class="nav-link">Tjenester</a>
+                <a href="#referanser" class="nav-link">Referanser</a>
+                <a href="#kontakt" class="nav-link">Kontakt</a>
+            </nav>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="main-content">
-            <h2>Alt innen snekring og totalrenovering i Moss og omegn.</h2>
-
+    <!-- Hovedinnhold -->
+    <main class="page">
+        <!-- Hero / Intro -->
+        <section id="hjem" class="hero">
+            <h2>Alt innen snekring og totalrenovering i Moss og omegn</h2>
             <p>
                 Bygg og Hjem AS er et lite, profesjonelt håndverksfirma lokalisert i Moss.
                 Vi hjelper deg med både små og store prosjekter, og legger stor vekt på god oppfølging gjennom hele prosessen.
             </p>
             <p>
-                Vi tar på oss alt fra enkle oppdrag, som å montere en TV på veggen til omfattende totalrenovering av hele hus,
+                Vi tar på oss alt fra enkle oppdrag, som å montere en TV på veggen, til omfattende totalrenovering av hele hus,
                 både innvendig og utvendig.
             </p>
-            <p>
-                Send oss gjerne en uforpliktende forespørsel på
-                <strong>post@byggoghjem.no</strong>.
-            </p>
+        </section>
 
-            <!-- Hovedbilde -->
+        <!-- Tjenester / Bilder -->
+        <section id="tjenester">
+            <h2>Utvalgte prosjekter</h2>
             <h3>Under er noen bilder av arbeid vi har utført den siste tiden.</h3>
             
-            <img src="Bilde1.jpg"
-                 alt="Eksempel på arbeid utført av Bygg og Hjem AS"
+            <img src="Bilde1.jpg" 
+                 alt="Eksempel på arbeid utført av Bygg og Hjem AS" 
                  class="project-image">
+            
+            <!-- Legg til flere bilder her hvis du har:
+            <div class="responsive-images">
+                <img src="Bilde2.jpg" alt="Prosjekt 2">
+                <img src="Bilde3.jpg" alt="Prosjekt 3">
+            </div>
+            -->
+        </section>
 
-            <h3>Kontakt oss</h3>
+        <!-- Kundeuttalelser -->
+        <section id="referanser" class="testimonials">
+            <h2>Kundeuttalelser</h2>
+
+            <div class="testimonials-grid">
+                <article class="testimonial">
+                    <div class="meta">
+                        <strong>Anders</strong> – Moss
+                        <span class="date">3. des</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <h3>Bygge trapp med overbygg</h3>
+                    <p>
+                        Bygg og Hjem utførte arbeidet med å lage nytt inngangsparti med overbygg.
+                        Firmaet var tydelig i kommunikasjon, gikk grundig gjennom på befaring
+                        og skapte tillit ved å være ryddig og profesjonelle. Underveis fikk vi
+                        daglige oppdateringer med bilder og forklaring på arbeidet. Sluttresultatet
+                        ble veldig bra og vi er svært fornøyde. Anbefales på det sterkeste.
+                    </p>
+                </article>
+
+                <article class="testimonial">
+                    <div class="meta">
+                        <strong>Anders</strong> – Moss
+                        <span class="date">26. aug</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <h3>Henge opp TV</h3>
+                    <p>
+                        Effektiv og profesjonell utføring av jobben.
+                    </p>
+                </article>
+
+                <article class="testimonial">
+                    <div class="meta">
+                        <strong>Anne</strong> – Moss
+                        <span class="date">9. jul</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <h3>Bytting av planker i platting</h3>
+                    <p>
+                        Bygg og Hjem AS har laget støttemur, parkeringsplass, trapp og hjulpet
+                        med platting. Stor jobb over flere uker. God kommunikasjon og veldig bra
+                        arbeid. De holdt alt de lovet og sendte jevnlig bilder og oppdateringer.
+                        Utrolig fornøyd og anbefaler dem sterkt videre.
+                    </p>
+                </article>
+
+                <article class="testimonial">
+                    <div class="meta">
+                        <strong>Sara</strong> – Moss
+                        <span class="date">6. mai</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <h3>Bygge gjerde</h3>
+                    <p>
+                        Ryddig prosess fra start til slutt. Svært effektive og tilpasset seg
+                        raskt endringene vi ønsket utført.
+                    </p>
+                </article>
+
+                <article class="testimonial">
+                    <div class="meta">
+                        <strong>Farago</strong> – Moss
+                        <span class="date">2. apr</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <h3>Blomsterkasser i treverk</h3>
+                    <p>
+                        Topp kvalitet og pålitelige håndverkere!
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Kontakt -->
+        <section id="kontakt" class="contact-info">
+            <h2>Kontakt oss</h2>
+            <p>
+                Send oss gjerne en uforpliktende forespørsel på
+                <strong><a href="mailto:post@byggoghjem.no">post@byggoghjem.no</a></strong>
+            </p>
             <p>
                 <strong>Bygg og Hjem AS</strong><br>
                 E-post: <a href="mailto:post@byggoghjem.no">post@byggoghjem.no</a><br>
                 Telefon: 916 64 505<br>
                 Adresse: Værftsgata 1C, 1511 Moss
             </p>
-        </div>
-    </div>
+        </section>
+    </main>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Bygg og Hjem AS | Org.nr. 933 223 922 MVA</p>
     </footer>
+
+    <script>
+        // Smooth scroll og grønn highlight-effekt
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Fjern active fra alle
+                navLinks.forEach(l => l.classList.remove('active'));
+                
+                // Legg til active på klikket lenke
+                this.classList.add('active');
+                
+                // Finn seksjonen
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                // Fjern highlight fra alle seksjoner
+                sections.forEach(s => s.classList.remove('highlight'));
+                
+                // Scroll til seksjonen
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Legg til grønn highlight-effekt
+                setTimeout(() => {
+                    targetSection.classList.add('highlight');
+                }, 400);
+                
+                // Fjern highlight etter 2.5 sekunder
+                setTimeout(() => {
+                    targetSection.classList.remove('highlight');
+                }, 2900);
+            });
+        });
+    </script>
 </body>
 </html>
