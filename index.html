@@ -21,6 +21,15 @@
             line-height: 1.6;
         }
 
+        /* Dato/klokkeslett øverst til venstre */
+        .datetime-bar {
+            background: #374151;
+            color: #e5e7eb;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
         /* Toppmeny */
         .top-nav {
             position: sticky;
@@ -126,6 +135,32 @@
         /* Hero / intro */
         .hero {
             text-align: center;
+            position: relative;
+        }
+
+        /* Sesongmelding (nisse/nytt år/kapasitet) */
+        .seasonal-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(34, 197, 94, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .seasonal-message img {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 0.75rem;
+        }
+
+        .seasonal-message p {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
         }
 
         /* Prosjektbilder – én kolonne, store bilder */
@@ -237,10 +272,19 @@
             section {
                 padding: 1.75rem 1.25rem;
             }
+
+            .seasonal-message img {
+                max-width: 100px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Dato og klokkeslett -->
+    <div class="datetime-bar">
+        <span id="datetime"></span>
+    </div>
+
     <!-- Toppmeny -->
     <header class="top-nav">
         <div class="top-nav-inner">
@@ -267,6 +311,9 @@
                 Vi tar på oss alt fra enkle oppdrag, som å montere en TV på veggen, til omfattende totalrenovering av hele hus,
                 både innvendig og utvendig.
             </p>
+
+            <!-- Sesongmelding (nisse/nytt år/kapasitet) -->
+            <div class="seasonal-message" id="seasonalMessage"></div>
         </section>
 
         <!-- Prosjekter / Bilder -->
@@ -384,11 +431,68 @@
     </footer>
 
     <script>
-        // Smooth scroll, grønn highlight + korrigering for sticky meny
+        // ========== DATO OG KLOKKESLETT ==========
+        const dagenavn = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+        const maanednavn = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember'];
+
+        function oppdaterDatoTid() {
+            const naa = new Date();
+            const dag = dagenavn[naa.getDay()];
+            const dato = naa.getDate();
+            const maaned = maanednavn[naa.getMonth()];
+            const aar = naa.getFullYear();
+            const timer = String(naa.getHours()).padStart(2, '0');
+            const minutter = String(naa.getMinutes()).padStart(2, '0');
+            const sekunder = String(naa.getSeconds()).padStart(2, '0');
+
+            document.getElementById('datetime').textContent = 
+                `${dag} ${dato}. ${maaned} ${aar} Kl. ${timer}:${minutter}:${sekunder}`;
+        }
+
+        oppdaterDatoTid();
+        setInterval(oppdaterDatoTid, 1000);
+
+        // ========== SESONGMELDING ==========
+        function oppdaterSesongmelding() {
+            const naa = new Date();
+            const maaned = naa.getMonth() + 1; // 1 = januar, 12 = desember
+            const dag = naa.getDate();
+            const aar = naa.getFullYear();
+
+            const container = document.getElementById('seasonalMessage');
+            container.innerHTML = '';
+
+            // 1. desember – 31. desember: Nisse + "God jul"
+            if (maaned === 12 && dag >= 1) {
+                const img = document.createElement('img');
+                img.src = 'santa.png';
+                img.alt = 'Julenisse';
+                container.appendChild(img);
+
+                const tekst = document.createElement('p');
+                tekst.textContent = 'God jul!';
+                container.appendChild(tekst);
+            }
+            // 1. januar – 20. januar: "Godt nytt år"
+            else if (maaned === 1 && dag >= 1 && dag <= 20) {
+                const tekst = document.createElement('p');
+                tekst.textContent = 'Godt nytt år!';
+                container.appendChild(tekst);
+            }
+            // Resten av året: Kapasitetsmelding
+            else {
+                const tekst = document.createElement('p');
+                tekst.textContent = `I ${maanednavn[maaned - 1]} ${aar} har vi per i dag noen pågående oppdrag, men hør med oss vedrørende kapasitet.`;
+                container.appendChild(tekst);
+            }
+        }
+
+        oppdaterSesongmelding();
+
+        // ========== SMOOTH SCROLL + GRØNN HIGHLIGHT ==========
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section');
 
-        // map seksjons‑id -> nav‑link
         const sectionMap = {};
         navLinks.forEach(link => {
             const id = link.getAttribute('href').substring(1);
@@ -406,7 +510,6 @@
             });
         }
 
-        // Klikk på meny
         navLinks.forEach(link => {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -431,21 +534,17 @@
             });
         });
 
-        // Hover på seksjoner -> tilsvarende menylenke får active‑stil
         sections.forEach(section => {
             section.addEventListener('mouseenter', () => {
                 const id = section.id;
                 const link = sectionMap[id];
                 if (!link) return;
 
-                // fjern active fra alle først
                 navLinks.forEach(l => l.classList.remove('active'));
-                // sett active på tilhørende link
                 link.classList.add('active');
             });
 
             section.addEventListener('mouseleave', () => {
-                // når du forlater seksjonen, fjerner vi active
                 navLinks.forEach(l => l.classList.remove('active'));
             });
         });
