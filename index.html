@@ -138,7 +138,7 @@
             position: relative;
         }
 
-        /* Sesongmelding (nisse/nytt år/kapasitet) */
+        /* Sesongmelding */
         .seasonal-message {
             display: flex;
             flex-direction: column;
@@ -182,7 +182,89 @@
             border: 1px solid #e5e7eb;
         }
 
-        /* Kundeuttalelser */
+        /* Kundeuttalelser - Søyle-statistikk */
+        .rating-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .rating-bars {
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        .rating-bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+        }
+
+        .bar-bg {
+            flex: 1;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .bar-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .rating-score {
+            text-align: center;
+        }
+
+        .score-big {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+
+        .score-stars {
+            color: #fbbf24;
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        .score-count {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .mittanbud-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: #1f2937;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .mittanbud-btn:hover {
+            background: #374151;
+        }
+
+        /* Kundeuttalelser Grid */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -273,8 +355,15 @@
                 padding: 1.75rem 1.25rem;
             }
 
-            .seasonal-message img {
-                max-width: 100px;
+            .rating-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rating-bars {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                width: 100%;
             }
         }
     </style>
@@ -302,7 +391,6 @@
     <main class="page">
         <!-- Hero / Intro -->
         <section id="hjem" class="hero">
-            <!-- Sesongmelding (nisse/nytt år/kapasitet) -->
             <div class="seasonal-message" id="seasonalMessage"></div>
 
             <h2>Alt innen snekring og totalrenovering i Moss og omegn</h2>
@@ -334,11 +422,71 @@
         <!-- Kundeuttalelser -->
         <section id="referanser" class="testimonials">
             <h2>Kundeuttalelser</h2>
-            <p style="text-align:center; font-size:0.85rem; color:#6b7280; margin-top:0.25rem;">
-                fra Mittanbud.no år 2025
-            </p>
+            
+            <!-- Visuell søyle-statistikk -->
+            <div class="rating-summary">
+                <div class="rating-bars">
+                    <div class="rating-bar-row">5 <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div> 12</div>
+                    <div class="rating-bar-row">4 <div class="bar-bg"><div class="bar-fill" style="width: 0%;"></div></div> 0</div>
+                    <div class="rating-bar-row">3 <div class="bar-bg"><div class="bar-fill" style="width: 0%;"></div></div> 0</div>
+                    <div class="rating-bar-row">2 <div class="bar-bg"><div class="bar-fill" style="width: 0%;"></div></div> 0</div>
+                    <div class="rating-bar-row">1 <div class="bar-bg"><div class="bar-fill" style="width: 0%;"></div></div> 0</div>
+                </div>
+                <div class="rating-score">
+                    <span class="score-big">5.0 av 5</span>
+                    <div class="score-stars">★★★★★</div>
+                    <span class="score-count">12 Evalueringer</span>
+                    <br>
+                    <a href="https://mittanbud.no/bedrift/8075345" target="_blank" class="mittanbud-btn">Se alle på Mittanbud.no</a>
+                </div>
+            </div>
 
             <div class="testimonials-grid">
+                <!-- NYE 2026 -->
+                <article class="testimonial">
+                    <div class="meta">
+                        <strong>Anette</strong> – Moss
+                        <span class="date">1. mars 2026</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <h3>Bytte av to små loftsvinduer</h3>
+                    <p>
+                        Byttet to små loftsvinduer. Fikk god hjelp for balansen mellom pris og kvalitet.
+                        Arbeidet ble utført effektivt, innen avtalte tider. Kan anbefale Bygg og Hjem AS.
+                    </p>
+                </article>
+
+                <article class="testimonial">
+                    <div class="meta">
+                        <strong>iben</strong> – Moss
+                        <span class="date">18. jan 2026</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <h3>Skjøting, strimling og sparkling av vegger</h3>
+                    <p>
+                        Jeg brukte Bygg og Hjem AS til sparkling og overflatearbeid, og jeg er veldig fornøyd med hele opplevelsen.
+                        De sparklet strimler på veggene, utbedret avskallet maling i taket og helsparklet veggene, til tross for krevende lysforhold med hardt lyskast.
+                        Resultatet ble skikkelig fint, og overflatene ser jevne og profesjonelle ut.
+                        Jeg satte spesielt pris på den gode kommunikasjonen underveis. De var ryddige, pålitelige og enkle å forholde seg til.
+                        I tillegg gjorde de mer arbeid enn det som først var avtalt, uten å ta ekstra betalt, noe jeg opplevde som både sjeldent og veldig positivt.
+                        De holdt seg også innenfor budsjettet, som i utgangspunktet var stramt for en jobb av denne typen. Anbefales!
+                    </p>
+                </article>
+
+                <article class="testimonial">
+                    <div class="meta">
+                        <strong>Stian‑Aleksander</strong> – Moss
+                        <span class="date">6. jan 2026</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <h3>Montering av foringer og lister til utgangsdør</h3>
+                    <p>
+                        Svarte raskt, kom på befaring raskt, utførte jobben til avtalt tid og til avtalt pris.
+                        Kan anbefales.
+                    </p>
+                </article>
+
+                <!-- EKSISTERENDE 2025 -->
                 <article class="testimonial">
                     <div class="meta">
                         <strong>Anders</strong> – Moss
@@ -455,14 +603,13 @@
         // ========== SESONGMELDING ==========
         function oppdaterSesongmelding() {
             const naa = new Date();
-            const maaned = naa.getMonth() + 1; // 1 = januar, 12 = desember
+            const maaned = naa.getMonth() + 1;
             const dag = naa.getDate();
             const aar = naa.getFullYear();
 
             const container = document.getElementById('seasonalMessage');
             container.innerHTML = '';
 
-            // 1. desember – 31. desember: Nisse + "God jul"
             if (maaned === 12 && dag >= 1) {
                 const img = document.createElement('img');
                 img.src = 'santa.png';
@@ -472,15 +619,11 @@
                 const tekst = document.createElement('p');
                 tekst.textContent = 'God jul!';
                 container.appendChild(tekst);
-            }
-            // 1. januar – 20. januar: "Godt nytt år"
-            else if (maaned === 1 && dag >= 1 && dag <= 20) {
+            } else if (maaned === 1 && dag >= 1 && dag <= 20) {
                 const tekst = document.createElement('p');
                 tekst.textContent = 'Godt nytt år!';
                 container.appendChild(tekst);
-            }
-            // Resten av året: Kapasitetsmelding
-            else {
+            } else {
                 const tekst = document.createElement('p');
                 tekst.textContent = `I ${maanednavn[maaned - 1]} ${aar} har vi per i dag noen pågående oppdrag, men hør med oss vedrørende kapasitet.`;
                 container.appendChild(tekst);
@@ -489,7 +632,7 @@
 
         oppdaterSesongmelding();
 
-        // ========== SMOOTH SCROLL + GRØNN HIGHLIGHT ==========
+        // ========== SMOOTH SCROLL + HIGHLIGHT ==========
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section');
 
