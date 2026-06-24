@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bygg og Hjem AS</title>
     <style>
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             margin: 0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -15,6 +21,7 @@
             line-height: 1.6;
         }
 
+        /* Dato/klokkeslett øverst til venstre */
         .datetime-bar {
             background: #374151;
             color: #e5e7eb;
@@ -23,6 +30,7 @@
             text-align: left;
         }
 
+        /* Toppmeny */
         .top-nav {
             position: sticky;
             top: 0;
@@ -73,12 +81,14 @@
             background: #77aaff;
         }
 
+        /* Hovedinnhold */
         .page {
             max-width: 1100px;
             margin: 2rem auto 3rem;
             padding: 0 1rem;
         }
 
+        /* Seksjoner */
         section {
             background: #ffffff;
             border-radius: 12px;
@@ -90,12 +100,14 @@
             cursor: pointer;
         }
 
+        /* Hover-effekt på seksjoner */
         section:hover {
             background: rgba(34, 197, 94, 0.08);
             box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25), 0 10px 30px rgba(34, 197, 94, 0.15);
             transform: scale(1.01);
         }
 
+        /* Klikk-highlight (sterkere enn hover) */
         section.highlight {
             background: rgba(34, 197, 94, 0.12) !important;
             box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.4), 0 10px 30px rgba(34, 197, 94, 0.2) !important;
@@ -120,8 +132,13 @@
             margin: 1rem auto;
         }
 
-        .hero { text-align: center; position: relative; }
+        /* Hero / intro */
+        .hero {
+            text-align: center;
+            position: relative;
+        }
 
+        /* Sesongmelding (nisse/nytt år/kapasitet) */
         .seasonal-message {
             display: flex;
             flex-direction: column;
@@ -146,6 +163,7 @@
             color: #1f2937;
         }
 
+        /* Prosjektbilder – én kolonne, store bilder */
         .project-images-column {
             display: flex;
             flex-direction: column;
@@ -164,72 +182,7 @@
             border: 1px solid #e5e7eb;
         }
 
-        .rating-summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 600px;
-            margin: 1.5rem auto;
-            padding: 1rem;
-            background: #f9fafb;
-            border-radius: 10px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .rating-bars { flex: 1; margin-right: 2rem; }
-
-        .rating-bar-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 4px;
-            font-size: 0.85rem;
-        }
-
-        .bar-bg {
-            flex: 1;
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            margin: 0 10px;
-            position: relative;
-        }
-
-        .bar-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: #3b82f6;
-            border-radius: 4px;
-        }
-
-        .rating-score { text-align: center; }
-
-        .score-big {
-            font-size: 2rem;
-            font-weight: 800;
-            display: block;
-            line-height: 1;
-        }
-
-        .score-stars { color: #fbbf24; font-size: 1.2rem; margin: 5px 0; }
-        .score-count { font-size: 0.85rem; color: #6b7280; }
-
-        .mittanbud-btn {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.6rem 1.2rem;
-            background: #1f2937;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .mittanbud-btn:hover { background: #374151; }
-
+        /* Kundeuttalelser */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -260,13 +213,33 @@
             text-align: left;
         }
 
-        .testimonial p { margin: 0; font-size: 0.95rem; color: #374151; }
-        .stars { color: #fbbf24; font-size: 0.95rem; }
+        .testimonial p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #374151;
+        }
 
-        .contact-info { text-align: center; font-size: 1rem; }
-        .contact-info a { color: #2563eb; text-decoration: none; }
-        .contact-info a:hover { text-decoration: underline; }
+        .stars {
+            color: #fbbf24;
+            font-size: 0.95rem;
+        }
 
+        /* Kontakt */
+        .contact-info {
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .contact-info a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -275,36 +248,61 @@
             margin-top: 3rem;
         }
 
+        /* Mobil */
         @media (max-width: 640px) {
-            .top-nav-inner { flex-direction: column; align-items: center; gap: 0.5rem; }
-            .top-nav nav { width: 100%; display: flex; justify-content: space-around; flex-wrap: wrap; row-gap: 0.35rem; }
-            .top-nav nav a { flex: 1 1 auto; text-align: center; }
-            section { padding: 1.75rem 1.25rem; }
+            .top-nav-inner {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
 
-            .rating-summary { flex-direction: column; text-align: center; }
-            .rating-bars { margin-right: 0; margin-bottom: 1rem; width: 100%; }
+            .top-nav nav {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                row-gap: 0.35rem;
+            }
+
+            .top-nav nav a {
+                flex: 1 1 auto;
+                text-align: center;
+            }
+
+            section {
+                padding: 1.75rem 1.25rem;
+            }
+
+            .seasonal-message img {
+                max-width: 100px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Dato og klokkeslett -->
     <div class="datetime-bar">
         <span id="datetime"></span>
     </div>
 
+    <!-- Toppmeny -->
     <header class="top-nav">
         <div class="top-nav-inner">
             <div class="logo">Bygg og Hjem AS</div>
             <nav>
                 <a href="#hjem" class="nav-link">Hjem</a>
+                <a href="#prosjekter" class="nav-link">Prosjekter</a>
                 <a href="#referanser" class="nav-link">Referanser</a>
-                <a href="#prosjekter" class="nav-link">Prosjekter/Bilder</a>
                 <a href="#kontakt" class="nav-link">Kontakt</a>
             </nav>
         </div>
     </header>
 
+    <!-- Hovedinnhold -->
     <main class="page">
+        <!-- Hero / Intro -->
         <section id="hjem" class="hero">
+            <!-- Sesongmelding (nisse/nytt år/kapasitet) -->
             <div class="seasonal-message" id="seasonalMessage"></div>
 
             <h2>Alt innen snekring og totalrenovering i Moss og omegn</h2>
@@ -318,85 +316,29 @@
             </p>
         </section>
 
-        <section id="referanser" class="testimonials">
-            <h2>Evalueringer / Kundeuttalelser</h2>
+        <!-- Prosjekter / Bilder -->
+        <section id="prosjekter">
+            <h2>Prosjekter og bilder</h2>
+            <h3>Under er noen bilder av arbeid vi har utført den siste tiden.</h3>
 
-            <div class="rating-summary">
-                <div class="rating-bars">
-                    <div class="rating-bar-row">5 <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div> 13</div>
-                    <div class="rating-bar-row">4 <div class="bar-bg"><div class="bar-fill" style="width: 0%;"></div></div> 0</div>
-                    <div class="rating-bar-row">3 <div class="bar-bg"><div class="bar-fill" style="width: 0%;"></div></div> 0</div>
-                    <div class="rating-bar-row">2 <div class="bar-bg"><div class="bar-fill" style="width: 0%;"></div></div> 0</div>
-                    <div class="rating-bar-row">1 <div class="bar-bg"><div class="bar-fill" style="width: 0%;"></div></div> 0</div>
-                </div>
-                <div class="rating-score">
-                    <span class="score-big">5.0 av 5</span>
-                    <div class="score-stars">★★★★★</div>
-                    <span class="score-count">13 Evalueringer</span>
-                    <br>
-                    <a href="https://mittanbud.no/bedrift/8075345" target="_blank" class="mittanbud-btn">Se alle på Mittanbud.no</a>
-                </div>
+            <div class="project-images-column">
+                <img src="Bilde1.jpg" 
+                     alt="Eksempel på arbeid utført av Bygg og Hjem AS"
+                     class="project-image-large">
+                <img src="Bilde2.jpg" 
+                     alt="Collage av utført arbeid av Bygg og Hjem AS"
+                     class="project-image-large">
             </div>
+        </section>
+
+        <!-- Kundeuttalelser -->
+        <section id="referanser" class="testimonials">
+            <h2>Kundeuttalelser</h2>
+            <p style="text-align:center; font-size:0.85rem; color:#6b7280; margin-top:0.25rem;">
+                fra Mittanbud.no år 2025
+            </p>
 
             <div class="testimonials-grid">
-                <!-- NY 2026 -->
-                <article class="testimonial">
-                    <div class="meta">
-                        <strong>Bente</strong> – Moss
-                        <span class="date">8. mai 2026</span>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <h3>Fjerning av gammel maling fra terrassegulv</h3>
-                    <p>
-                        Veldig fornøyd med kvaliteten på arbeidet, ryddig, oppfølging underveis. Profesjonelt firma med levering av topp kvalitet.
-                    </p>
-                </article>
-
-                <!-- 2026 -->
-                <article class="testimonial">
-                    <div class="meta">
-                        <strong>Anette</strong> – Moss
-                        <span class="date">1. mars 2026</span>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <h3>Bytte av to små loftsvinduer</h3>
-                    <p>
-                        Byttet to små loftsvinduer. Fikk god hjelp for balansen mellom pris og kvalitet.
-                        Arbeidet ble utført effektivt, innen avtalte tider. Kan anbefale Bygg og Hjem AS.
-                    </p>
-                </article>
-
-                <article class="testimonial">
-                    <div class="meta">
-                        <strong>iben</strong> – Moss
-                        <span class="date">18. jan 2026</span>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <h3>Skjøting, strimling og sparkling av vegger</h3>
-                    <p>
-                        Jeg brukte Bygg og Hjem AS til sparkling og overflatearbeid, og jeg er veldig fornøyd med hele opplevelsen.
-                        De sparklet strimler på veggene, utbedret avskallet maling i taket og helsparklet veggene, til tross for krevende lysforhold med hardt lyskast.
-                        Resultatet ble skikkelig fint, og overflatene ser jevne og profesjonelle ut.
-                        Jeg satte spesielt pris på den gode kommunikasjonen underveis. De var ryddige, pålitelige og enkle å forholde seg til. I tillegg gjorde de mer arbeid enn det som først var avtalt, uten å ta ekstra betalt, noe jeg opplevde som både sjeldent og veldig positivt.
-                        De holdt seg også innenfor budsjettet, som i utgangspunktet var stramt for en jobb av denne typen.
-                        Anbefales!
-                    </p>
-                </article>
-
-                <article class="testimonial">
-                    <div class="meta">
-                        <strong>Stian‑Aleksander</strong> – Moss
-                        <span class="date">6. jan 2026</span>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <h3>Montering av foringer og lister til utgangsdør</h3>
-                    <p>
-                        Svarte raskt, kom på befaring raskt, utførte jobben til avtalt tid og til avtalt pris.
-                        Kan anbefales.
-                    </p>
-                </article>
-
-                <!-- EKSISTERENDE 2025 -->
                 <article class="testimonial">
                     <div class="meta">
                         <strong>Anders</strong> – Moss
@@ -420,7 +362,9 @@
                         <span class="stars">★★★★★</span>
                     </div>
                     <h3>Henge opp TV</h3>
-                    <p>Effektiv og profesjonell utføring av jobben.</p>
+                    <p>
+                        Effektiv og profesjonell utføring av jobben.
+                    </p>
                 </article>
 
                 <article class="testimonial">
@@ -458,21 +402,14 @@
                         <span class="stars">★★★★★</span>
                     </div>
                     <h3>Blomsterkasser i treverk</h3>
-                    <p>Topp kvalitet og pålitelige håndverkere!</p>
+                    <p>
+                        Topp kvalitet og pålitelige håndverkere!
+                    </p>
                 </article>
             </div>
         </section>
 
-        <section id="prosjekter">
-            <h2>Prosjekter og bilder</h2>
-            <h3>Under er noen bilder av arbeid vi har utført den siste tiden.</h3>
-
-            <div class="project-images-column">
-                <img src="Bilde1.jpg" alt="Eksempel på arbeid utført av Bygg og Hjem AS" class="project-image-large">
-                <img src="Bilde2.jpg" alt="Collage av utført arbeid av Bygg og Hjem AS" class="project-image-large">
-            </div>
-        </section>
-
+        <!-- Kontakt -->
         <section id="kontakt" class="contact-info">
             <h2>Kontakt oss</h2>
             <p>
@@ -488,11 +425,13 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Bygg og Hjem AS | Org.nr. 933 223 922 MVA</p>
     </footer>
 
     <script>
+        // ========== DATO OG KLOKKESLETT ==========
         const dagenavn = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
         const maanednavn = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember'];
 
@@ -506,22 +445,24 @@
             const minutter = String(naa.getMinutes()).padStart(2, '0');
             const sekunder = String(naa.getSeconds()).padStart(2, '0');
 
-            document.getElementById('datetime').textContent =
+            document.getElementById('datetime').textContent = 
                 `${dag} ${dato}. ${maaned} ${aar} Kl. ${timer}:${minutter}:${sekunder}`;
         }
 
         oppdaterDatoTid();
         setInterval(oppdaterDatoTid, 1000);
 
+        // ========== SESONGMELDING ==========
         function oppdaterSesongmelding() {
             const naa = new Date();
-            const maaned = naa.getMonth() + 1;
+            const maaned = naa.getMonth() + 1; // 1 = januar, 12 = desember
             const dag = naa.getDate();
             const aar = naa.getFullYear();
 
             const container = document.getElementById('seasonalMessage');
             container.innerHTML = '';
 
+            // 1. desember – 31. desember: Nisse + "God jul"
             if (maaned === 12 && dag >= 1) {
                 const img = document.createElement('img');
                 img.src = 'santa.png';
@@ -531,19 +472,24 @@
                 const tekst = document.createElement('p');
                 tekst.textContent = 'God jul!';
                 container.appendChild(tekst);
-            } else if (maaned === 1 && dag >= 1 && dag <= 20) {
+            }
+            // 1. januar – 20. januar: "Godt nytt år"
+            else if (maaned === 1 && dag >= 1 && dag <= 20) {
                 const tekst = document.createElement('p');
                 tekst.textContent = 'Godt nytt år!';
                 container.appendChild(tekst);
-            } else {
+            }
+            // Resten av året: Kapasitetsmelding
+            else {
                 const tekst = document.createElement('p');
-                tekst.textContent = `Per ${maanednavn[maaned - 1]} ${aar} har vi noen pågående oppdrag, ta kontakt for å avklare tilgjengelig kapasitet.`;
+                tekst.textContent = `I ${maanednavn[maaned - 1]} ${aar} har vi per i dag noen pågående oppdrag, men hør med oss vedrørende kapasitet.`;
                 container.appendChild(tekst);
             }
         }
 
         oppdaterSesongmelding();
 
+        // ========== SMOOTH SCROLL + GRØNN HIGHLIGHT ==========
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section');
 
@@ -558,7 +504,10 @@
             const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
             const offsetPosition = elementPosition - headerOffset;
 
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         }
 
         navLinks.forEach(link => {
@@ -575,8 +524,13 @@
 
                 scrollToSection(targetSection);
 
-                setTimeout(() => { targetSection.classList.add('highlight'); }, 400);
-                setTimeout(() => { targetSection.classList.remove('highlight'); }, 5400);
+                setTimeout(() => {
+                    targetSection.classList.add('highlight');
+                }, 400);
+
+                setTimeout(() => {
+                    targetSection.classList.remove('highlight');
+                }, 5400);
             });
         });
 
